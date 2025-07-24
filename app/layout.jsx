@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="day">
+    <html lang="en" data-theme="day"> 
       <head>
         <link
           rel="icon"
