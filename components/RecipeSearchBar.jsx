@@ -1,11 +1,15 @@
-// RecipeSearchBar.js
 "use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SearchIcon, X } from "@/components/Icons";
 
-const RecipeSearchBar = ({ handleSearchFocus, handleBlur, showResults, setShowResults }) => {
+const RecipeSearchBar = ({
+  handleSearchFocus,
+  handleBlur,
+  showResults,
+  setShowResults,
+}) => {
   const [input, setInput] = useState("");
   const [meals, setMeals] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -92,22 +96,25 @@ const RecipeSearchBar = ({ handleSearchFocus, handleBlur, showResults, setShowRe
   }, []);
 
   return (
-    <div id="searchBar" className="relative w-full max-w-md mx-auto mt-4">
+    <div
+      id="searchBar"
+      className="flex flex-col relative bg-gray-950 p-2 rounded-xl"
+    >
       {!isSearchOpen ? (
         <button
           onClick={() => setIsSearchOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition"
+          className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200 px-3 py-2"
         >
           <SearchIcon className="w-5 h-5" />
-          <span className="text-sm font-medium">Search dish</span>
+          <span className="text-base font-medium">Search dish</span>
         </button>
       ) : (
-        <label className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg w-full shadow">
-          <SearchIcon className="text-gray-500" />
+        <label className="flex items-center gap-2 px-3 py-2 bg-gray-900 border border-gray-600 text-white rounded-xl w-80">
+          <SearchIcon />
           <input
             ref={inputRef}
             type="text"
-            className="grow bg-transparent text-gray-700 placeholder-gray-400 outline-none"
+            className="grow bg-gray-900 text-white placeholder-gray-400 outline-none"
             placeholder="Search dish..."
             value={input}
             onChange={(e) => {
@@ -118,11 +125,13 @@ const RecipeSearchBar = ({ handleSearchFocus, handleBlur, showResults, setShowRe
             onFocus={handleSearchFocus}
             autoFocus
           />
-          <button onClick={() => {
-            handleSearch("");
-            setIsSearchOpen(false);
-          }}>
-            <X className="text-gray-400 hover:text-red-400 transition" />
+          <button
+            onClick={() => {
+              handleSearch("");
+              setIsSearchOpen(false);
+            }}
+          >
+            <X className="text-white" />
           </button>
         </label>
       )}
@@ -130,31 +139,32 @@ const RecipeSearchBar = ({ handleSearchFocus, handleBlur, showResults, setShowRe
       {showResults && input && isSearchOpen && (
         <div
           ref={resultsRef}
-          className="absolute z-10 mt-2 w-full max-h-80 overflow-y-scroll bg-white border border-gray-300 rounded-lg shadow-md animate-fade-in"
+          className="w-80 max-h-80 overflow-y-scroll no-scrollbar bg-purple-900 border border-purple-700 p-2 rounded-xl flex flex-col gap-2 absolute top-14 md:top-20 md:right-0 z-10"
         >
-          {meals && meals.map((meal, index) => (
-            <Link key={meal.idMeal} href={`/meal/${meal.idMeal}`}>
-              <div
-                className={`$ {
-                  index === activeIndex
-                    ? "bg-purple-100"
-                    : "hover:bg-gray-100"
-                } p-2 rounded-lg flex items-center gap-3 cursor-pointer`}
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  window.location.href = `/meal/${meal.idMeal}`;
-                }}
-              >
-                <img
-                  src={meal.strMealThumb}
-                  alt={meal.strMeal}
-                  className="w-10 h-10 rounded-full border"
-                />
-                <span className="text-sm font-semibold text-gray-800">{meal.strMeal}</span>
-              </div>
-            </Link>
-          ))}
+          {meals &&
+            meals.map((meal, index) => (
+              <Link key={meal.idMeal} href={`/meal/${meal.idMeal}`}>
+                <div
+                  className={`${
+                    index === activeIndex
+                      ? "bg-purple-700"
+                      : "hover:bg-purple-800"
+                  } p-1 rounded-xl flex items-center justify-start gap-3 text-white transition-colors duration-200`}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    window.location.href = `/meal/${meal.idMeal}`;
+                  }}
+                >
+                  <img
+                    src={meal.strMealThumb}
+                    alt={meal.strMeal}
+                    className="w-10 h-10 rounded-full"
+                  />
+                  <span>{meal.strMeal}</span>
+                </div>
+              </Link>
+            ))}
         </div>
       )}
     </div>
