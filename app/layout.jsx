@@ -1,5 +1,7 @@
+// app/layout.tsx
 import { Inter } from "next/font/google";
 import "./globals.css";
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,14 +19,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.className} bg-gray-100`}>
-        {/* Dark "Flavor AI" Button */}
-        <div className="p-4">
-          <button className="bg-gray-900 text-white font-semibold text-lg px-6 py-2 rounded-lg shadow hover:bg-gray-800 transition">
-            Flavor AI
-          </button>
-        </div>
-
-        {children}
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );
