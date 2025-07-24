@@ -16,11 +16,17 @@ export default function RootLayout({ children }) {
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍱</text></svg>"
         />
       </head>
-      <body className={`${inter.className} bg-gray-100`}>
-        {/* Dark "Flavor AI" Button */}
-        <div className="p-4">
-          <button className="bg-gray-900 text-white font-semibold text-lg px-6 py-2 rounded-lg shadow hover:bg-gray-800 transition">
-            Flavor AI
+      <body
+        className={`${inter.className} bg-gradient-to-br from-gray-100 via-purple-100 to-pink-200 dark:from-gray-950 dark:to-black transition-colors duration-500`}
+      >
+        {/* Glassy Glowing "Flavor AI" Title Button */}
+        <div className="p-6 flex justify-center">
+          <button
+            className="relative px-8 py-3 text-xl font-bold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-2xl shadow-xl 
+            hover:scale-105 transition-transform duration-300 backdrop-blur-md
+            before:absolute before:inset-0 before:rounded-2xl before:blur-lg before:bg-gradient-to-r before:from-purple-500/50 before:to-pink-500/50 before:z-[-1]"
+          >
+            <span className="drop-shadow-lg">🍱 Flavor AI</span>
           </button>
         </div>
 
