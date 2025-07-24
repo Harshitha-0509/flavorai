@@ -1,5 +1,3 @@
-// app/layout.tsx
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -18,14 +16,11 @@ export default function RootLayout({ children }) {
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍱</text></svg>"
         />
       </head>
-      <body className={`${inter.className} bg-gradient-to-b from-white via-violet-100 to-purple-200 min-h-screen`}>
-        {/* Left-Aligned Flavor AI */}
+      <body className={${inter.className} bg-gray-100}>
+        {/* Dark "Flavor AI" Button */}
         <div className="p-4">
-          <button
-            className="px-6 py-2 bg-white/20 text-white font-bold text-lg rounded-xl shadow-md backdrop-blur-md 
-                       border border-white/30 hover:scale-105 transition-transform duration-300 hover:shadow-lg"
-          >
-            🍱 Flavor AI
+          <button className="bg-gray-900 text-white font-semibold text-lg px-6 py-2 rounded-lg shadow hover:bg-gray-800 transition">
+            Flavor AI
           </button>
         </div>
 
