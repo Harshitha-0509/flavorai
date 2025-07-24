@@ -98,23 +98,23 @@ const RecipeSearchBar = ({
   return (
     <div
       id="searchBar"
-      className="flex flex-col relative bg-gray-950 p-2 rounded-xl"
+      className="flex flex-col relative p-2 rounded-xl backdrop-blur-md bg-gradient-to-r from-purple-900/60 to-purple-950/60 border border-purple-700 shadow-xl"
     >
       {!isSearchOpen ? (
         <button
           onClick={() => setIsSearchOpen(true)}
-          className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200 px-3 py-2"
+          className="flex items-center gap-2 text-white hover:text-purple-300 transition duration-300 ease-in-out px-4 py-2 rounded-xl bg-purple-800/60 hover:bg-purple-700/60 shadow-md"
         >
-          <SearchIcon className="w-5 h-5" />
+          <SearchIcon className="w-5 h-5 animate-pulse" />
           <span className="text-base font-medium">Search dish</span>
         </button>
       ) : (
-        <label className="flex items-center gap-2 px-3 py-2 bg-gray-900 border border-gray-600 text-white rounded-xl w-80">
-          <SearchIcon />
+        <label className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-900 border border-purple-700 text-white rounded-xl w-80 shadow-lg transition duration-300 ease-in-out">
+          <SearchIcon className="animate-bounce" />
           <input
             ref={inputRef}
             type="text"
-            className="grow bg-gray-900 text-white placeholder-gray-400 outline-none"
+            className="grow bg-transparent text-white placeholder-purple-300 outline-none"
             placeholder="Search dish..."
             value={input}
             onChange={(e) => {
@@ -131,7 +131,7 @@ const RecipeSearchBar = ({
               setIsSearchOpen(false);
             }}
           >
-            <X className="text-white" />
+            <X className="text-white hover:text-red-300 transition duration-200" />
           </button>
         </label>
       )}
@@ -139,17 +139,17 @@ const RecipeSearchBar = ({
       {showResults && input && isSearchOpen && (
         <div
           ref={resultsRef}
-          className="w-80 max-h-80 overflow-y-scroll no-scrollbar bg-purple-900 border border-purple-700 p-2 rounded-xl flex flex-col gap-2 absolute top-14 md:top-20 md:right-0 z-10"
+          className="w-80 max-h-80 overflow-y-scroll no-scrollbar bg-gradient-to-b from-purple-800 to-purple-950 border border-purple-700 p-2 rounded-xl flex flex-col gap-2 absolute top-14 md:top-20 md:right-0 z-10 shadow-lg animate-fade-in"
         >
           {meals &&
             meals.map((meal, index) => (
               <Link key={meal.idMeal} href={`/meal/${meal.idMeal}`}>
                 <div
-                  className={`${
+                  className={`$ {
                     index === activeIndex
                       ? "bg-purple-700"
                       : "hover:bg-purple-800"
-                  } p-1 rounded-xl flex items-center justify-start gap-3 text-white transition-colors duration-200`}
+                  } p-2 rounded-xl flex items-center justify-start gap-3 text-white transition-colors duration-200 cursor-pointer backdrop-blur-sm bg-opacity-60`}
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseDown={(e) => {
                     e.preventDefault();
@@ -159,9 +159,9 @@ const RecipeSearchBar = ({
                   <img
                     src={meal.strMealThumb}
                     alt={meal.strMeal}
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full border-2 border-purple-300 shadow-md"
                   />
-                  <span>{meal.strMeal}</span>
+                  <span className="font-semibold text-sm">{meal.strMeal}</span>
                 </div>
               </Link>
             ))}
