@@ -1,3 +1,5 @@
+// app/layout.tsx
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,17 +18,14 @@ export default function RootLayout({ children }) {
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍱</text></svg>"
         />
       </head>
-      <body
-        className={`${inter.className} bg-gradient-to-br from-gray-100 via-purple-100 to-pink-200 dark:from-gray-950 dark:to-black transition-colors duration-500`}
-      >
-        {/* Glassy Glowing "Flavor AI" Title Button */}
-        <div className="p-6 flex justify-center">
+      <body className={`${inter.className} bg-gradient-to-b from-white via-violet-100 to-purple-200 min-h-screen`}>
+        {/* Left-Aligned Flavor AI */}
+        <div className="p-4">
           <button
-            className="relative px-8 py-3 text-xl font-bold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-2xl shadow-xl 
-            hover:scale-105 transition-transform duration-300 backdrop-blur-md
-            before:absolute before:inset-0 before:rounded-2xl before:blur-lg before:bg-gradient-to-r before:from-purple-500/50 before:to-pink-500/50 before:z-[-1]"
+            className="px-6 py-2 bg-white/20 text-white font-bold text-lg rounded-xl shadow-md backdrop-blur-md 
+                       border border-white/30 hover:scale-105 transition-transform duration-300 hover:shadow-lg"
           >
-            <span className="drop-shadow-lg">🍱 Flavor AI</span>
+            🍱 Flavor AI
           </button>
         </div>
 
