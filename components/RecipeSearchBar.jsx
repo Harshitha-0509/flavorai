@@ -96,9 +96,12 @@ const RecipeSearchBar = ({
   }, []);
 
   return (
-    <div id="searchBar" className="flex flex-col relative">
+    <div
+      id="searchBar"
+      className="flex flex-col relative bg-gray-950 p-2 rounded-xl"
+    >
       {!isSearchOpen ? (
-        <button 
+        <button
           onClick={() => setIsSearchOpen(true)}
           className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200 px-3 py-2"
         >
@@ -106,12 +109,12 @@ const RecipeSearchBar = ({
           <span className="text-base font-medium">Search dish</span>
         </button>
       ) : (
-        <label className="bg-gray-800 border border-gray-600 text-white rounded-xl px-3 py-2 flex items-center gap-2">
+        <label className="flex items-center gap-2 px-3 py-2 bg-gray-900 border border-gray-600 text-white rounded-xl w-80">
           <SearchIcon />
           <input
             ref={inputRef}
             type="text"
-            className="grow bg-transparent text-white placeholder-gray-400 outline-none"
+            className="grow bg-gray-900 text-white placeholder-gray-400 outline-none"
             placeholder="Search dish..."
             value={input}
             onChange={(e) => {
@@ -122,10 +125,12 @@ const RecipeSearchBar = ({
             onFocus={handleSearchFocus}
             autoFocus
           />
-          <button onClick={() => {
-            handleSearch("");
-            setIsSearchOpen(false);
-          }}>
+          <button
+            onClick={() => {
+              handleSearch("");
+              setIsSearchOpen(false);
+            }}
+          >
             <X className="text-white" />
           </button>
         </label>
@@ -134,16 +139,16 @@ const RecipeSearchBar = ({
       {showResults && input && isSearchOpen && (
         <div
           ref={resultsRef}
-          className="w-80 max-h-80 overflow-y-scroll no-scrollbar bg-purple-900 border border-purple-700 p-2 rounded-xl flex flex-col gap-2 absolute top-12 md:top-20 md:right-0 z-10"
+          className="w-80 max-h-80 overflow-y-scroll no-scrollbar bg-purple-900 border border-purple-700 p-2 rounded-xl flex flex-col gap-2 absolute top-14 md:top-20 md:right-0 z-10"
         >
-          {input &&
-            meals &&
+          {meals &&
             meals.map((meal, index) => (
               <Link key={meal.idMeal} href={`/meal/${meal.idMeal}`}>
                 <div
-                  className={`${index === activeIndex
-                    ? "bg-purple-700"
-                    : "hover:bg-purple-800"
+                  className={`${
+                    index === activeIndex
+                      ? "bg-purple-700"
+                      : "hover:bg-purple-800"
                   } p-1 rounded-xl flex items-center justify-start gap-3 text-white transition-colors duration-200`}
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseDown={(e) => {
